@@ -1,0 +1,25 @@
+{
+  "upload_type": "software",
+  "title": "icsprio v1.0.0: an open Python package for fetching, joining, and prioritizing ICS advisories",
+  "creators": [
+    {"name": "Ikwuogu, Friday Ogochukwu", "orcid": "0009-0009-2222-1318", "affiliation": "Independent Researcher, Odessa, Texas, USA"},
+    {"name": "Mike-Ewewie, David", "affiliation": "Computer Science Department, University of Texas Permian Basin, Odessa, Texas, USA"}
+  ],
+  "description": "<p>icsprio fetches, joins, and prioritizes ICS vulnerability intelligence from CISA ICS Advisories (CSAF 2.0), the CISA KEV catalog, FIRST.org EPSS, CISA Vulnrichment, and MITRE ATT&amp;CK for ICS into one deterministic, reproducible table with a documented, overridable priority score. See the repository README and docs/ for the full methodology, scoring formula, and known limitations.</p>",
+  "license": "mit",
+  "keywords": [
+    "industrial control systems",
+    "operational technology",
+    "vulnerability management",
+    "CISA",
+    "KEV",
+    "EPSS",
+    "ATT&CK",
+    "critical infrastructure"
+  ],
+  "version": "1.0.0",
+  "related_identifiers": [
+    {"identifier": "https://github.com/friday-ikwuogu/icsprio", "relation": "isSupplementTo", "scheme": "url"}
+  ],
+  "access_right": "open"
+}

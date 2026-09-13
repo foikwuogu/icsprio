@@ -122,6 +122,12 @@ sources was not available while building it — the code is complete and
 tested against realistic offline fixtures, but a real end-to-end run against
 live data has not yet happened).
 
+## Publishing
+
+Not yet pushed anywhere — see [docs/PUBLISH_GUIDE.md](docs/PUBLISH_GUIDE.md)
+for the exact steps to release on GitHub, mint a Zenodo DOI, and (once the
+name is confirmed available) publish to PyPI.
+
 ## Citation
 
 See [CITATION.cff](CITATION.cff). DOI: pending first Zenodo release.
