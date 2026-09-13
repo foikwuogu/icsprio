@@ -37,13 +37,19 @@ def run_fetch(
 
     session = get_session()
 
+    print("Fetching CISA ICS advisories (this is the slow step; progress logged every 25)...", flush=True)
     advisories = cisa_ics.fetch_ics_advisories(since_year=since_year, session=session, raw_dir=raw_dir)
     advisory_rows = cisa_ics.advisories_to_rows(advisories)
     cve_ids = sorted({r["cve"] for r in advisory_rows if r.get("cve")})
+    print(f"  -> {len(advisories)} advisories, {len(cve_ids)} unique CVEs", flush=True)
 
+    print("Fetching KEV catalog...", flush=True)
     kev_by_cve = kev.fetch_kev(session=session, raw_dir=raw_dir)
+    print("Fetching EPSS scores...", flush=True)
     epss_by_cve = epss.fetch_epss(cve_ids, session=session, raw_dir=raw_dir)
+    print("Fetching Vulnrichment records (progress logged every 50 CVEs)...", flush=True)
     vulnrichment_by_cve = vulnrichment.fetch_vulnrichment(cve_ids, session=session, raw_dir=raw_dir)
+    print("Fetching ATT&CK for ICS...", flush=True)
     attack_techniques = attack_ics.fetch_attack_ics(session=session, raw_dir=raw_dir)
 
     manifest = {

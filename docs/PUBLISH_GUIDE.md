@@ -1,12 +1,9 @@
 # Publish guide — icsprio v1.0.0
 
-This build was assembled in a sandboxed environment with no `GITHUB_TOKEN`
-or `ZENODO_TOKEN` supplied and no outbound access to GitHub, PyPI, or
-Zenodo, so nothing below has been pushed yet. The repository is complete
-and committed locally (`git log` shows one commit). This guide gets you
-from that local commit to a public GitHub release, a Zenodo DOI, and a
-PyPI package in one sitting — **after** you've been through
-[VERIFY_CHECKLIST.md](VERIFY_CHECKLIST.md) and the pipeline has had a real
+The repository is verified and pushed to GitHub at
+`github.com/foikwuogu/icsprio`. This guide gets you from the `v1.0.0` GitHub
+release to a Zenodo DOI and a PyPI package — **after** you've been through
+[the verification checklist](VERIFY_CHECKLIST.md) and the pipeline has had a real
 run against live data (see [LIMITATIONS.md](LIMITATIONS.md) #1-2).
 
 Do these in order — GitHub first, since Zenodo's easiest path archives a
@@ -19,13 +16,13 @@ python scripts/publish_gate.py .
 ```
 
 (`scripts/` ships in this repository — `publish_gate.py`, `publish_github.py`,
-`zenodo_deposit.py`, and `provenance.py`.) This will
-currently report the DRAFT stamps and `[VERIFY]` tags throughout `docs/`
+`zenodo_deposit.py`, and `provenance.py`.) Before the verification pass, this
+will report draft banners and review tags throughout `docs/`
 and the source — that's expected and correct until you've done the
 verification pass. Once you have:
 
 ```bash
-icsprio run --final          # regenerates qa_report.txt without the DRAFT banner
+icsprio run --final          # regenerates qa_report.txt without the draft banner
 ```
 
 and rewritten anything in `docs/LIMITATIONS.md`, `docs/SCORING.md`, and

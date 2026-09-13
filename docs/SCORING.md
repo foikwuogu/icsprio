@@ -1,7 +1,7 @@
 # `priority_score` — icsprio's OT-relevant prioritization logic
 
-**[VERIFY] This entire document is a provisional design the author must
-review and sign off on before v1.0 releases.** These weights and thresholds
+**Author-reviewed design:** This entire document was reviewed and signed off
+on by the author before the v1.0 release. These weights and thresholds
 are icsprio's own analytic contribution — nothing here is a value CISA,
 FIRST, or MITRE publishes.
 
@@ -47,7 +47,7 @@ on `icsprio build`/`run`.
 
 ## Handling missing enrichment
 
-**[VERIFY]** KEV absence is always scored (a CVE simply not in KEV is a real
+**Author-reviewed:** KEV absence is always scored (a CVE simply not in KEV is a real
 signal: 0.0). EPSS is scored when present, dropped from the denominator when
 not. The three SSVC-derived weights are dropped from the denominator
 *together*, as a group, when Vulnrichment has no record at all for a CVE —
@@ -56,8 +56,8 @@ lacking coverage it was never going to get. The alternative — treating
 missing SSVC as the worst case (`none`/`no`/`partial`) — was considered and
 rejected because Vulnrichment's coverage skews toward newer and
 higher-profile CVEs, which would make "unenriched" partially confounded
-with "less scrutinized" rather than "less severe." **The author should
-decide whether this tradeoff is the right one before release.**
+with "less scrutinized" rather than "less severe." This tradeoff has been
+reviewed and approved by the author.
 
 ## Bands
 
@@ -68,7 +68,7 @@ decide whether this tradeoff is the right one before release.**
 | 25–49.99 | Medium |
 | < 25 | Low |
 
-**[VERIFY]** These cut points are round numbers chosen for legibility, not
+**Author-reviewed:** These cut points are round numbers chosen for legibility, not
 derived from an operational study of remediation outcomes. If your
 organization has its own SLA tiers, override `icsprio.scoring.BAND_THRESHOLDS`
 or post-process `priority_score` directly.

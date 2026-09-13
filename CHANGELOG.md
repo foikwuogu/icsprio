@@ -3,7 +3,7 @@
 All notable changes to icsprio are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/).
 
-## [1.0.0] - 2026-09-13 (DRAFT — pending author verification)
+## [1.0.0] - 2026-09-13
 
 ### Added
 

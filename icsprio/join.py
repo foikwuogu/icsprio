@@ -94,18 +94,30 @@ def build_joined_table(
     return df[OUTPUT_COLUMNS]
 
 
-def join_match_rates(df: pd.DataFrame) -> Dict[str, float]:
+def join_match_rates(df: pd.DataFrame) -> Dict[str, Optional[float]]:
     """Fraction of CVE-bearing rows that matched each enrichment source —
     written into the QA report so a reader can see how complete the join is
-    without opening the data."""
+    without opening the data.
+
+    Returns `None` for a source whose column isn't present in `df` at all,
+    rather than raising — `build_joined_table`'s output always has every
+    column (see OUTPUT_COLUMNS), but this function is also useful for QA'ing
+    a partially-assembled or hand-built table that doesn't.
+    """
     with_cve = df[df["cve"].notna()]
     n = len(with_cve) or 1
+
+    def rate(col: str, predicate) -> Optional[float]:
+        if col not in with_cve.columns:
+            return None
+        return float(predicate(with_cve[col]).sum()) / n
+
     return {
-        "kev_match_rate": float((with_cve["in_kev"] == True).sum()) / n,  # noqa: E712
-        "epss_match_rate": float(with_cve["epss_score"].notna().sum()) / n,
-        "vulnrichment_match_rate": float(with_cve["ssvc_exploitation"].notna().sum()) / n,
-        "attack_mapped_rate": float(
-            with_cve["attack_technique_ids"].apply(lambda x: len(x) > 0).sum()
-        )
-        / n,
+        "kev_match_rate": rate("in_kev", lambda s: s.astype(bool)),
+        "epss_match_rate": rate("epss_score", lambda s: s.notna()),
+        "vulnrichment_match_rate": rate("ssvc_exploitation", lambda s: s.notna()),
+        "attack_mapped_rate": rate(
+            "attack_technique_ids",
+            lambda s: s.apply(lambda x: isinstance(x, list) and len(x) > 0),
+        ),
     }

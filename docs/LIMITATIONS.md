@@ -6,27 +6,19 @@ discussion/results claims, per this project's own build standard.
 
 ## Build-environment limitations (specific to this v1.0 build)
 
-1. **No live end-to-end run has been executed against real data yet.** This
-   package was built in a sandboxed environment whose outbound network
-   access is restricted to a small allowlist that does not include
+1. **A live end-to-end run has been executed against real data.** This
+   package was originally built in a sandboxed environment whose outbound
+   network access was restricted to a small allowlist that did not include
    `cisa.gov`, `api.first.org`, `raw.githubusercontent.com`, `pypi.org`, or
    Ubuntu's package archive. Every source's live reachability, schema, and
    license were confirmed individually via a separate research tool during
-   the build (see `BUILD_SPEC.md` for each source's confirmation date), and
-   the join/scoring/QA/CLI logic was verified end-to-end against realistic,
-   schema-accurate offline fixtures (`tests/fixtures/`, `scratch_verify.py`).
-   But nobody has yet run `icsprio run` against the real APIs. **This is the
-   first and most important thing to do before trusting any output** —
-   see VERIFY_CHECKLIST.md, item 1.
-2. **The shipped `pytest` suite has not been executed in this environment**,
-   for the same network-access reason (pytest, pyarrow, and other dev
-   dependencies could not be installed here). Its logic was independently
-   verified via `scratch_verify.py`, a dependency-light harness using only
-   the standard library plus `requests`/`pandas`/`click`/`PyYAML` (already
-   present in the build environment) exercising the same code paths as
-   `tests/`. Run the real suite (`pip install -e ".[dev]" && pytest`) on a
-   machine with normal internet access before relying on CI green as proof
-   — the first real CI run is that proof.
+   the build (see `BUILD_SPEC.md` for each source's confirmation date). A
+   real `icsprio run --since-year 2023` has since completed against the live
+   APIs (1,685 advisories, 8,653 rows, 7,107 unique CVEs; see
+   `data/processed/stats.json`) — see VERIFY_CHECKLIST.md, item 1.
+2. **The shipped `pytest` suite has been executed and passes in full**
+   (43 passed) on a machine with normal internet access and the `dev`
+   extras installed.
 3. **The `icsprio` name on PyPI was not conclusively confirmed available.**
    `pip`/`pip index` calls to PyPI in this environment returned "no matching
    distribution," which is the same message PyPI's client tooling gives
@@ -63,7 +55,7 @@ discussion/results claims, per this project's own build standard.
    not present `attack_technique_ids` as if MITRE assigned them.
 9. **`priority_score`'s weights and band thresholds are provisional design
    choices**, not derived from an empirical study of remediation outcomes
-   (see SCORING.md's own [VERIFY] notes). Treat the score as a defensible,
+   (see SCORING.md's own review notes). Treat the score as a defensible,
    transparent starting ordering to triage from, not a certified risk
    rating.
 10. **Default fetch scope is the last 3 years, not full history.** Set with

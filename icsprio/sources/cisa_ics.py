@@ -32,9 +32,16 @@ from __future__ import annotations
 import datetime as _dt
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Iterable, List, Optional
 
 from .. import config, http, provenance
+
+# CISA/CSAF is fetched one file per advisory (no bulk endpoint); with years
+# of history that's 1000+ requests, so they're issued concurrently to keep
+# `icsprio run` from taking tens of minutes. GET-only and read-only per
+# thread; file writes/provenance logging happen back on the main thread.
+FETCH_WORKERS = 16
 
 GITHUB_TREE_API = "https://api.github.com/repos/cisagov/CSAF/git/trees/develop"
 GITHUB_RAW_ROOT = "https://raw.githubusercontent.com/cisagov/CSAF/develop"
@@ -108,23 +115,35 @@ def fetch_ics_advisories(
     os.makedirs(out_dir, exist_ok=True)
 
     advisories = []
-    for path in paths:
+    total = len(paths)
+    done = 0
+
+    def _get(path: str):
         url = f"{GITHUB_RAW_ROOT}/{path}"
         resp = session.get(url, timeout=config.REQUEST_TIMEOUT_SECONDS)
-        if resp.status_code >= 400:
-            continue
-        payload = resp.content
-        filename = os.path.basename(path)
-        out_path = os.path.join(out_dir, filename)
-        with open(out_path, "wb") as f:
-            f.write(payload)
-        provenance.log_fetch(
-            config.PROVENANCE_LOG, os.path.relpath(out_path, raw_dir), payload, url
-        )
-        try:
-            advisories.append(parse_csaf_advisory(json.loads(payload)))
-        except (json.JSONDecodeError, KeyError):
-            continue
+        return path, resp
+
+    with ThreadPoolExecutor(max_workers=min(FETCH_WORKERS, total) or 1) as pool:
+        futures = [pool.submit(_get, path) for path in paths]
+        for future in as_completed(futures):
+            path, resp = future.result()
+            done += 1
+            if total and (done == 1 or done % 25 == 0 or done == total):
+                print(f"  cisa_ics: fetched advisory {done}/{total}", flush=True)
+            if resp.status_code >= 400:
+                continue
+            payload = resp.content
+            filename = os.path.basename(path)
+            out_path = os.path.join(out_dir, filename)
+            with open(out_path, "wb") as f:
+                f.write(payload)
+            provenance.log_fetch(
+                config.PROVENANCE_LOG, os.path.relpath(out_path, raw_dir), payload, resp.url
+            )
+            try:
+                advisories.append(parse_csaf_advisory(json.loads(payload)))
+            except (json.JSONDecodeError, KeyError):
+                continue
     return advisories
 
 

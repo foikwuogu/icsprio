@@ -44,6 +44,7 @@ dependencies = [
 
 [project.optional-dependencies]
 parquet = ["pyarrow>=14.0"]
+dashboard = ["streamlit>=1.57"]
 dev = [
   "pytest>=7.4",
   "pytest-cov>=4.1",

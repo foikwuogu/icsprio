@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-09-13T03:44:54.738679+00:00",
+  "join_match_rates": {
+    "attack_mapped_rate": 0.058823529411764705,
+    "epss_match_rate": 0.9967641280480758,
+    "kev_match_rate": 0.009823182711198428,
+    "vulnrichment_match_rate": 0.7893216225586501
+  },
+  "n_rows_total": 8653,
+  "n_unique_advisories": 1685,
+  "n_unique_cves": 7107,
+  "priority_band_counts": {
+    "Critical": 83,
+    "High": 37,
+    "Low": 6555,
+    "Medium": 1978
+  },
+  "sanity_check_problems": [],
+  "spot_check_sample": [
+    {
+      "advisory_id": "ICSA-24-116-03",
+      "cve": "CVE-2024-3400",
+      "epss_percentile": 1.0,
+      "in_kev": true,
+      "priority_band": "Critical",
+      "priority_score": 100.0
+    },
+    {
+      "advisory_id": "ICSA-25-352-02",
+      "cve": "CVE-2025-59287",
+      "epss_percentile": 0.9998,
+      "in_kev": true,
+      "priority_band": "Critical",
+      "priority_score": 100.0
+    },
+    {
+      "advisory_id": "ICSA-23-052-01",
+      "cve": "CVE-2023-31813",
+      "epss_percentile": NaN,
+      "in_kev": false,
+      "priority_band": "Low",
+      "priority_score": 0.0
+    },
+    {
+      "advisory_id": "ICSA-23-166-11",
+      "cve": "CVE-2024-0584",
+      "epss_percentile": NaN,
+      "in_kev": false,
+      "priority_band": "Low",
+      "priority_score": 0.0
+    },
+    {
+      "advisory_id": "ICSA-25-226-07",
+      "cve": "CVE-2024-40974",
+      "epss_percentile": 0.22814,
+      "in_kev": false,
+      "priority_band": "Low",
+      "priority_score": 10.7
+    },
+    {
+      "advisory_id": "ICSA-24-284-03",
+      "cve": "CVE-2024-37996",
+      "epss_percentile": 0.05363,
+      "in_kev": false,
+      "priority_band": "Low",
+      "priority_score": 6.34
+    }
+  ],
+  "spot_check_seed": 42,
+  "stage_counts": {
+    "advisories_fetched": 1685,
+    "advisory_cve_rows": 8653,
+    "attack_techniques": 97,
+    "epss_scored_cves": 7082,
+    "kev_entries": 1709,
+    "unique_cves": 7107,
+    "vulnrichment_records": 5554
+  }
+}

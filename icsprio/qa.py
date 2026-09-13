@@ -77,7 +77,7 @@ def build_qa_report(
     spot_checks = spot_check_sample(df, seed=seed)
 
     return {
-        "generated_at": _dt.datetime.utcnow().isoformat() + "Z",
+        "generated_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
         "stage_counts": stage_counts,
         "n_rows_total": int(len(df)),
         "n_unique_advisories": int(df["advisory_id"].nunique()),
@@ -110,7 +110,7 @@ def render_qa_report_text(qa: Dict[str, object], draft: bool = True) -> str:
 
     lines.append("## Join match rates (share of CVE-bearing rows matched)")
     for source, rate in qa["join_match_rates"].items():
-        lines.append(f"  {source}: {rate:.1%}")
+        lines.append(f"  {source}: {rate:.1%}" if rate is not None else f"  {source}: n/a (column not present)")
     lines.append("")
 
     lines.append("## Priority band counts")

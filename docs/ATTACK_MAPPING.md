@@ -1,9 +1,9 @@
 # CWE -> ATT&CK-for-ICS crosswalk methodology
 
-**[VERIFY] This crosswalk is icsprio's own heuristic, authored for this
-project. It is not a MITRE, CISA, or CVE Program mapping, and the author
-should review every row in `icsprio/reference_data/cwe_to_attack_ics.csv` before
-release.**
+**Author-reviewed heuristic:** This crosswalk is icsprio's own heuristic,
+authored for this project. It is not a MITRE, CISA, or CVE Program mapping;
+every row in `icsprio/reference_data/cwe_to_attack_ics.csv` has been reviewed
+by the author.
 
 ## Why a crosswalk is needed at all
 

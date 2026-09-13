@@ -30,7 +30,7 @@ def test_build_joined_table_has_one_row_and_all_columns(
     row = df.iloc[0]
     assert row["advisory_id"] == "ICSA-99-999-01"
     assert row["cve"] == "CVE-2099-00001"
-    assert row["in_kev"] is True
+    assert bool(row["in_kev"]) is True  # pandas may store this as np.bool_, not a Python bool
     assert row["epss_percentile"] == 0.99972
     assert row["ssvc_exploitation"] == "active"
     assert "T0859" in row["attack_technique_ids"]  # CWE-798 -> Valid Accounts
@@ -55,6 +55,6 @@ def test_join_handles_cve_with_no_enrichment(csaf_advisory_fixture, attack_ics_f
     crosswalk = attack_mapping.load_crosswalk(CWE_ATTACK_CROSSWALK)
     df = join.build_joined_table(advisory_rows, {}, {}, {}, attack_techniques, crosswalk)
     row = df.iloc[0]
-    assert row["in_kev"] is False
+    assert bool(row["in_kev"]) is False  # pandas may store this as np.bool_, not a Python bool
     assert row["epss_score"] is None
     assert row["attack_technique_ids"] == []

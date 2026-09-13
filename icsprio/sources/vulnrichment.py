@@ -21,12 +21,16 @@ from __future__ import annotations
 import json
 import os
 import re
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Iterable, Optional
 
 from .. import config, http, provenance
 
 CVE_RE = re.compile(r"^CVE-(\d{4})-(\d+)$")
 BRANCHES_TO_TRY = ("develop", "main")
+FETCH_WORKERS = 16  # per-CVE requests are independent; run concurrently to keep `icsprio run` fast
+_PROVENANCE_LOCK = threading.Lock()
 
 
 def _bucket_path(cve_id: str) -> Optional[str]:
@@ -53,13 +57,25 @@ def fetch_vulnrichment(
     out_dir = os.path.join(raw_dir, "vulnrichment")
     os.makedirs(out_dir, exist_ok=True)
 
-    for cve_id in sorted({c for c in cve_ids if c}):
+    unique_cves = sorted({c for c in cve_ids if c})
+    total = len(unique_cves)
+    done = 0
+
+    def _fetch(cve_id: str):
         rel_path = _bucket_path(cve_id)
         if rel_path is None:
-            continue
-        record = _fetch_one(session, rel_path, cve_id, out_dir, raw_dir)
-        if record is not None:
-            out[cve_id] = record
+            return cve_id, None
+        return cve_id, _fetch_one(session, rel_path, cve_id, out_dir, raw_dir)
+
+    with ThreadPoolExecutor(max_workers=min(FETCH_WORKERS, total) or 1) as pool:
+        futures = [pool.submit(_fetch, cve_id) for cve_id in unique_cves]
+        for future in as_completed(futures):
+            done += 1
+            if total and (done == 1 or done % 50 == 0 or done == total):
+                print(f"  vulnrichment: checked {done}/{total} CVEs", flush=True)
+            cve_id, record = future.result()
+            if record is not None:
+                out[cve_id] = record
     return out
 
 
@@ -82,9 +98,10 @@ def _fetch_one(session, rel_path: str, cve_id: str, out_dir: str, raw_dir: str) 
         out_path = os.path.join(out_dir, f"{cve_id}.json")
         with open(out_path, "wb") as f:
             f.write(payload)
-        provenance.log_fetch(
-            config.PROVENANCE_LOG, os.path.relpath(out_path, raw_dir), payload, url
-        )
+        with _PROVENANCE_LOCK:
+            provenance.log_fetch(
+                config.PROVENANCE_LOG, os.path.relpath(out_path, raw_dir), payload, url
+            )
         try:
             return parse_vulnrichment_record(json.loads(payload))
         except (json.JSONDecodeError, KeyError):

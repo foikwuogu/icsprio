@@ -1,0 +1,38 @@
+icsprio QA report — generated 2026-09-13T03:44:54.738679+00:00
+
+## Stage counts
+  advisories_fetched: 1685
+  advisory_cve_rows: 8653
+  unique_cves: 7107
+  kev_entries: 1709
+  epss_scored_cves: 7082
+  vulnrichment_records: 5554
+  attack_techniques: 97
+  rows in joined table: 8653
+  unique advisories: 1685
+  unique CVEs: 7107
+
+## Join match rates (share of CVE-bearing rows matched)
+  kev_match_rate: 1.0%
+  epss_match_rate: 99.7%
+  vulnrichment_match_rate: 78.9%
+  attack_mapped_rate: 5.9%
+
+## Priority band counts
+  Low: 6555
+  Medium: 1978
+  Critical: 83
+  High: 37
+
+## Sanity checks
+  [OK] no problems detected
+
+## Spot-check sample (seed=42; verify these by hand)
+  ICSA-24-116-03 / CVE-2024-3400: in_kev=True epss_percentile=1.0 priority_score=100.0 (Critical)
+  ICSA-25-352-02 / CVE-2025-59287: in_kev=True epss_percentile=0.9998 priority_score=100.0 (Critical)
+  ICSA-23-052-01 / CVE-2023-31813: in_kev=False epss_percentile=nan priority_score=0.0 (Low)
+  ICSA-23-166-11 / CVE-2024-0584: in_kev=False epss_percentile=nan priority_score=0.0 (Low)
+  ICSA-25-226-07 / CVE-2024-40974: in_kev=False epss_percentile=0.22814 priority_score=10.7 (Low)
+  ICSA-24-284-03 / CVE-2024-37996: in_kev=False epss_percentile=0.05363 priority_score=6.34 (Low)
+
+[VERIFY] Confirm each spot-check row against the CISA advisory page, the KEV catalog, and the EPSS API directly before trusting this report.

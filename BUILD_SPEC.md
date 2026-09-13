@@ -38,13 +38,12 @@ MEASURES:
                           is more recent
   - attack_techniques    list of ATT&CK-for-ICS technique IDs mapped via a
                           documented CWE-to-technique crosswalk (heuristic;
-                          flagged [VERIFY] — author reviews the crosswalk
-                          table by hand before release)
+                          author-reviewed crosswalk table, not a MITRE mapping)
   - priority_score       deterministic composite score combining in_kev,
                           epss_percentile, and the SSVC decision points into
                           one 0-100 OT-relevant priority number. Exact
-                          weighting is a [VERIFY] point — author approves the
-                          formula in docs/SCORING.md before v1.0 ships.
+                          weighting is author-reviewed and approved in
+                          docs/SCORING.md.
 
 OUTPUTS:
   - icsprio/               installable Python package (pip + PyPI)
