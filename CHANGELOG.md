@@ -27,6 +27,10 @@ All notable changes to icsprio are documented here. Format loosely follows
 
 ### Known limitations
 
+See docs/LIMITATIONS.md for what remains provisional by design (e.g. the
+CWE-to-ATT&CK-for-ICS crosswalk is a documented heuristic, not a MITRE
+mapping) rather than unfinished.
+
 ### Fixed
 
 - `icsprio run` no longer looks hung on a fresh multi-year fetch: CISA
