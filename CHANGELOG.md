@@ -27,7 +27,22 @@ All notable changes to icsprio are documented here. Format loosely follows
 
 ### Known limitations
 
-See docs/LIMITATIONS.md, particularly items 1-2: this release has not yet
-been run end-to-end against live data or had its test suite executed by
-`pytest`, because of network restrictions in the build environment. See
-docs/VERIFY_CHECKLIST.md for what to do before treating v1.0 as verified.
+### Fixed
+
+- `icsprio run` no longer looks hung on a fresh multi-year fetch: CISA
+  advisory and Vulnrichment downloads are now issued concurrently, with
+  progress logged periodically.
+- `join_match_rates` no longer errors on a missing enrichment column or on
+  `numpy.bool_` KEV flags.
+
+### Added (this release)
+
+- `dashboard.py` — optional Streamlit dashboard (`pip install -e ".[dashboard]"`,
+  `streamlit run dashboard.py`) for viewing `data/processed/` output.
+
+### Verification
+
+Verified 2026-09-13: real `icsprio run --since-year 2023` against live
+sources (1,685 advisories, 8,653 rows, 7,107 unique CVEs, 0 sanity-check
+problems) and the full `pytest` suite (43 passed). See
+docs/VERIFY_CHECKLIST.md.
