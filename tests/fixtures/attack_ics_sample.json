@@ -1,0 +1,35 @@
+{
+  "type": "bundle",
+  "id": "bundle--fixture-0000-0000-0000-000000000000",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "attack-pattern",
+      "id": "attack-pattern--fixture-0000-0000-0000-000000000859",
+      "name": "Valid Accounts",
+      "external_references": [
+        {"source_name": "mitre-attack", "external_id": "T0859", "url": "https://attack.mitre.org/techniques/T0859"}
+      ],
+      "kill_chain_phases": [{"kill_chain_name": "mitre-ics-attack", "phase_name": "initial-access"}]
+    },
+    {
+      "type": "attack-pattern",
+      "id": "attack-pattern--fixture-0000-0000-0000-000000000819",
+      "name": "Exploit Public-Facing Application",
+      "external_references": [
+        {"source_name": "mitre-attack", "external_id": "T0819", "url": "https://attack.mitre.org/techniques/T0819"}
+      ],
+      "kill_chain_phases": [{"kill_chain_name": "mitre-ics-attack", "phase_name": "initial-access"}]
+    },
+    {
+      "type": "attack-pattern",
+      "id": "attack-pattern--fixture-revoked-0000-0000-000000000000",
+      "name": "Revoked Fixture Technique",
+      "revoked": true,
+      "external_references": [
+        {"source_name": "mitre-attack", "external_id": "T9999", "url": "https://attack.mitre.org/techniques/T9999"}
+      ],
+      "kill_chain_phases": [{"kill_chain_name": "mitre-ics-attack", "phase_name": "initial-access"}]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install icsprio
+        run: pip install -e ".[dev,parquet]"
+      - name: Lint
+        run: ruff check .
+      - name: Test (offline fixtures only — no live network calls)
+        run: pytest --cov=icsprio --cov-report=term-missing
+
+  live-smoke:
+    # Runs the real pipeline against live sources on a schedule, since the
+    # package's own network-sandboxed build environment could not do this.
+    # A failure here means an upstream API or schema changed, not that the
+    # code regressed against fixtures.
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install icsprio
+        run: pip install -e .
+      - name: Fetch a small recent window and build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          icsprio run --since-year $(date +%Y)
+          cat data/processed/qa_report.txt

@@ -1,0 +1,35 @@
+{
+  "document": {
+    "title": "Fixture Vendor Fixture PLC Firmware",
+    "category": "csaf_security_advisory",
+    "publisher": {"name": "CISA", "category": "coordinator"},
+    "tracking": {
+      "id": "ICSA-99-999-01",
+      "initial_release_date": "2099-01-02T00:00:00.000000Z",
+      "current_release_date": "2099-01-02T00:00:00.000000Z",
+      "status": "final",
+      "version": "1"
+    }
+  },
+  "product_tree": {
+    "branches": [
+      {
+        "category": "vendor",
+        "name": "Fixture Vendor",
+        "branches": [
+          {
+            "category": "product_name",
+            "name": "Fixture PLC Firmware",
+            "product": {"name": "Fixture PLC Firmware", "product_id": "CSAFPID-0001"}
+          }
+        ]
+      }
+    ]
+  },
+  "vulnerabilities": [
+    {
+      "cve": "CVE-2099-00001",
+      "notes": [{"category": "summary", "text": "Fixture description of a hard-coded credential vulnerability."}]
+    }
+  ]
+}

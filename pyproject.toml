@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "icsprio"
+version = "1.0.0"
+description = "Fetch, join, and prioritize ICS vulnerability intelligence from CISA ICS Advisories, KEV, EPSS, Vulnrichment, and ATT&CK for ICS."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Friday Ogochukwu Ikwuogu", email = "Friday.ikwuogu@gmail.com" },
+]
+maintainers = [
+  { name = "Friday Ogochukwu Ikwuogu", email = "Friday.ikwuogu@gmail.com" },
+]
+keywords = [
+  "ics", "ot", "scada", "cybersecurity", "vulnerability-management",
+  "cisa", "kev", "epss", "attack", "vulnrichment", "critical-infrastructure",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "requests>=2.31",
+  "pandas>=2.0",
+  "click>=8.1",
+  "PyYAML>=6.0",
+]
+# No third-party retry library: icsprio.http implements its own minimal
+# exponential backoff so the runtime dependency list stays short.
+
+[project.optional-dependencies]
+parquet = ["pyarrow>=14.0"]
+dev = [
+  "pytest>=7.4",
+  "pytest-cov>=4.1",
+  "responses>=0.24",
+  "ruff>=0.4",
+  "build>=1.0",
+  "twine>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/friday-ikwuogu/icsprio"
+Repository = "https://github.com/friday-ikwuogu/icsprio"
+Issues = "https://github.com/friday-ikwuogu/icsprio/issues"
+Documentation = "https://github.com/friday-ikwuogu/icsprio/tree/main/docs"
+
+[project.scripts]
+icsprio = "icsprio.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["icsprio"]
+# Explicit, because the crosswalk is a non-.py data file that must ship
+# inside the installed package (icsprio/reference_data/) for `icsprio run`
+# to find it regardless of the caller's working directory.
+artifacts = ["icsprio/reference_data/*.csv"]
+
+[tool.hatch.build.targets.sdist]
+include = ["icsprio/**", "code/**", "docs/**", "tests/**", "paper/**", "README.md", "LICENSE", "LICENSE-DATA"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"

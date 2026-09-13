@@ -1,0 +1,27 @@
+{
+  "_comment": "Author block for icsprio. Every document, citation file, Zenodo record, manuscript author list, and commit identity reads from here.",
+  "authors": [
+    {
+      "name": "Friday Ogochukwu Ikwuogu",
+      "family": "Ikwuogu",
+      "given": "Friday Ogochukwu",
+      "orcid": "0009-0009-2222-1318",
+      "email": "Friday.ikwuogu@gmail.com",
+      "affiliation": "Independent Researcher, Odessa, Texas, USA",
+      "roles": ["Conceptualization", "Methodology", "Software", "Data curation", "Validation", "Writing - original draft"],
+      "corresponding": true
+    }
+  ],
+  "collaborators": [
+    {
+      "name": "David Mike-Ewewie",
+      "family": "Mike-Ewewie",
+      "given": "David",
+      "orcid": "",
+      "email": "mike_d63291@utpb.edu",
+      "affiliation": "Computer Science Department, University of Texas Permian Basin, Odessa, Texas, USA",
+      "roles": ["Validation", "Writing - review and editing"],
+      "corresponding": false
+    }
+  ]
+}

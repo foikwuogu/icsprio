@@ -1,0 +1,20 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+The joined/derived data files produced by icsprio (everything under
+data/processed/, including icsprio_joined.csv and icsprio_joined.parquet)
+are licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+
+Attribution required when redistributing or building on these outputs:
+
+  Derived from icsprio (Ikwuogu & Mike-Ewewie), joining data from:
+    - CISA ICS Advisories (Cybersecurity and Infrastructure Security Agency,
+      U.S. Government work, public domain)
+    - CISA Known Exploited Vulnerabilities (KEV) Catalog (public domain)
+    - EPSS scores, FIRST.org, Inc. (see https://www.first.org/epss/ for terms)
+    - CISA Vulnrichment (https://github.com/cisagov/vulnrichment, CC0-1.0)
+    - MITRE ATT&CK for ICS (https://attack.mitre.org, subject to the ATT&CK
+      Terms of Use: https://attack.mitre.org/resources/terms-of-use/)
+
+Each underlying source's own license/terms continue to apply to that
+source's contribution to the joined output; CC BY 4.0 governs icsprio's own
+joining, scoring, and derived columns.

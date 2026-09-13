@@ -1,0 +1,46 @@
+cwe_id,cwe_name,attack_technique_id,attack_technique_name,confidence,rationale
+CWE-798,Use of Hard-coded Credentials,T0859,Valid Accounts,high,A hard-coded credential is a ready-made valid account for an adversary.
+CWE-798,Use of Hard-coded Credentials,T0892,Change Credential,medium,Hard-coded creds are often paired with no safe credential-rotation path.
+CWE-306,Missing Authentication for Critical Function,T0859,Valid Accounts,high,No authentication means any connection is treated as an authenticated one.
+CWE-306,Missing Authentication for Critical Function,T0822,External Remote Services,medium,Unauthenticated services exposed remotely are a direct entry point.
+CWE-1188,Insecure Default Initialization of Resource,T0822,External Remote Services,medium,Insecure defaults commonly ship a service reachable without hardening.
+CWE-522,Insufficiently Protected Credentials,T1694,Insecure Credentials,high,Directly describes the ATT&CK technique's scope.
+CWE-522,Insufficiently Protected Credentials,T0859,Valid Accounts,medium,Recovered credentials become valid-account access.
+CWE-521,Weak Password Requirements,T1694,Insecure Credentials,medium,Weak password policy increases credential-guessing success.
+CWE-330,Use of Insufficiently Random Values,T1694,Insecure Credentials,medium,Predictable tokens/session IDs behave like insecure credentials.
+CWE-862,Missing Authorization,T0859,Valid Accounts,medium,Missing checks let any account act beyond its intended role.
+CWE-863,Incorrect Authorization,T0836,Modify Parameter,medium,Broken authorization commonly enables unauthorized parameter changes.
+CWE-269,Improper Privilege Management,T0890,Exploitation for Privilege Escalation,high,Directly describes the ATT&CK technique's scope.
+CWE-284,Improper Access Control,T0859,Valid Accounts,medium,Generic access-control failure most often surfaces as unauthorized account use.
+CWE-732,Incorrect Permission Assignment for Critical Resource,T0859,Valid Accounts,medium,Over-broad permissions enable use of an account beyond its intended scope.
+CWE-89,SQL Injection,T0819,Exploit Public-Facing Application,high,SQLi is a canonical exploitation of an internet/network-facing application.
+CWE-78,OS Command Injection,T0819,Exploit Public-Facing Application,high,Command injection via a facing application is the entry vector.
+CWE-78,OS Command Injection,T0807,Command-Line Interface,medium,Successful injection frequently yields command-line execution.
+CWE-94,Code Injection,T0819,Exploit Public-Facing Application,high,Code injection into a facing application is the entry vector.
+CWE-94,Code Injection,T0853,Scripting,medium,Injected code is commonly executed as a script.
+CWE-79,Cross-site Scripting,T0819,Exploit Public-Facing Application,medium,Web-facing HMI/engineering-tool XSS is exploited via the facing application.
+CWE-434,Unrestricted Upload of File with Dangerous Type,T0873,Project File Infection,high,Unrestricted upload is the classic vector for infecting engineering project files.
+CWE-434,Unrestricted Upload of File with Dangerous Type,T0819,Exploit Public-Facing Application,medium,Upload endpoints are commonly reached via a facing web application.
+CWE-502,Deserialization of Untrusted Data,T0853,Scripting,medium,Insecure deserialization frequently leads to arbitrary code/script execution.
+CWE-611,Improper Restriction of XML External Entity Reference,T0811,Data from Information Repositories,medium,XXE is most often used to read files/configuration data.
+CWE-918,Server-Side Request Forgery,T0884,Connection Proxy,medium,SSRF lets an external request be relayed through the vulnerable server.
+CWE-918,Server-Side Request Forgery,T0822,External Remote Services,low,SSRF can pivot into otherwise-unreachable internal remote services.
+CWE-22,Path Traversal,T0811,Data from Information Repositories,high,Path traversal is a direct file/data-disclosure primitive.
+CWE-20,Improper Input Validation,T0819,Exploit Public-Facing Application,low,Generic weakness class; mapped to the most common ICS exploitation path.
+CWE-125,Out-of-bounds Read,T0820,Exploitation for Evasion,low,Memory-safety bugs are frequently used to defeat protections/monitoring.
+CWE-125,Out-of-bounds Read,T0814,Denial of Service,medium,Out-of-bounds reads commonly crash the affected process/device.
+CWE-787,Out-of-bounds Write,T0890,Exploitation for Privilege Escalation,high,Memory-corruption writes are the classic privilege-escalation primitive.
+CWE-787,Out-of-bounds Write,T0814,Denial of Service,medium,Out-of-bounds writes commonly crash the affected process/device.
+CWE-119,Improper Restriction of Operations within Memory Buffer,T0890,Exploitation for Privilege Escalation,medium,Buffer bugs are a common privilege-escalation/code-execution primitive.
+CWE-190,Integer Overflow or Wraparound,T0814,Denial of Service,medium,Integer overflows in ICS device firmware commonly manifest as crashes.
+CWE-400,Uncontrolled Resource Consumption,T0814,Denial of Service,high,Directly describes the ATT&CK technique's scope.
+CWE-476,NULL Pointer Dereference,T0814,Denial of Service,high,NULL-pointer crashes are a direct denial-of-service primitive.
+CWE-476,NULL Pointer Dereference,T0816,Device Restart/Shutdown,medium,A crashing process commonly forces a device restart.
+CWE-295,Improper Certificate Validation,T0830,Adversary-in-the-Middle,high,Directly enables interception/manipulation of the validated channel.
+CWE-319,Cleartext Transmission of Sensitive Information,T0842,Network Sniffing,high,Cleartext transmission is directly readable via passive network capture.
+CWE-319,Cleartext Transmission of Sensitive Information,T0830,Adversary-in-the-Middle,medium,Cleartext channels are also trivially interceptable/modifiable in transit.
+CWE-326,Inadequate Encryption Strength,T0830,Adversary-in-the-Middle,medium,Weak crypto lowers the cost of intercepting/altering a channel.
+CWE-327,Use of a Broken or Risky Cryptographic Algorithm,T0830,Adversary-in-the-Middle,medium,Broken crypto lowers the cost of intercepting/altering a channel.
+CWE-352,Cross-Site Request Forgery,T0836,Modify Parameter,low,A forged request against an HMI/engineering web UI can alter a live parameter.
+CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,T0882,Theft of Operational Information,high,Directly describes the ATT&CK technique's scope.
+CWE-346,Origin Validation Error,T0830,Adversary-in-the-Middle,low,Weak origin checks can enable interception/injection from an unintended origin.
