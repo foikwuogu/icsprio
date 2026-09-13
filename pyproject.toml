@@ -55,10 +55,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/friday-ikwuogu/icsprio"
-Repository = "https://github.com/friday-ikwuogu/icsprio"
-Issues = "https://github.com/friday-ikwuogu/icsprio/issues"
-Documentation = "https://github.com/friday-ikwuogu/icsprio/tree/main/docs"
+Homepage = "https://github.com/foikwuogu/icsprio"
+Repository = "https://github.com/foikwuogu/icsprio"
+Issues = "https://github.com/foikwuogu/icsprio/issues"
+Documentation = "https://github.com/foikwuogu/icsprio/tree/main/docs"
 
 [project.scripts]
 icsprio = "icsprio.cli:main"

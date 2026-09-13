@@ -19,7 +19,7 @@
   ],
   "version": "1.0.0",
   "related_identifiers": [
-    {"identifier": "https://github.com/friday-ikwuogu/icsprio", "relation": "isSupplementTo", "scheme": "url"}
+    {"identifier": "https://github.com/foikwuogu/icsprio", "relation": "isSupplementTo", "scheme": "url"}
   ],
   "access_right": "open"
 }

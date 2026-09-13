@@ -1,5 +1,7 @@
 # icsprio
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22732040.svg)](https://doi.org/10.5281/zenodo.22732040)
+
 **Status:** v1.0.0 (verified — see [Verification](#verification)) | **Maintainer:** Friday Ogochukwu Ikwuogu, [ORCID 0009-0009-2222-1318](https://orcid.org/0009-0009-2222-1318) | **License:** code [MIT](LICENSE), joined data [CC BY 4.0](LICENSE-DATA)
 
 icsprio is an open Python package that fetches, joins, and prioritizes ICS
@@ -124,12 +126,14 @@ mapping) rather than unfinished.
 
 ## Publishing
 
-Published on GitHub; see [docs/PUBLISH_GUIDE.md](docs/PUBLISH_GUIDE.md) for
-the Zenodo DOI and PyPI steps.
+Published on GitHub and archived on Zenodo
+([10.5281/zenodo.22732040](https://doi.org/10.5281/zenodo.22732040)); see
+[docs/PUBLISH_GUIDE.md](docs/PUBLISH_GUIDE.md) for PyPI steps.
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). DOI: pending first Zenodo release.
+See [CITATION.cff](CITATION.cff). DOI:
+[10.5281/zenodo.22732040](https://doi.org/10.5281/zenodo.22732040).
 
 ## Contributing
 

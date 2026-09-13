@@ -13,8 +13,8 @@ authors:
     given-names: "David"
     affiliation: "Computer Science Department, University of Texas Permian Basin, Odessa, Texas, USA"
 license: MIT
-repository-code: "https://github.com/friday-ikwuogu/icsprio"
-doi: "10.5281/zenodo.pending"
+repository-code: "https://github.com/foikwuogu/icsprio"
+doi: "10.5281/zenodo.22732040"
 keywords:
   - "industrial control systems"
   - "operational technology"
