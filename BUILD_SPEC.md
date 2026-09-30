@@ -61,7 +61,7 @@ VENUES:
   3. PyPI (pip install icsprio)
   4. JOSS submission kit — prepared and gate-checked, but per the author's
      own plan, submission is held pending a documented third-party user;
-     not filed this session.
+     not yet filed.
 
 VERIFY POINTS (author must personally rule on these before release):
   - priority_score weighting formula (docs/SCORING.md)

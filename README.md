@@ -144,3 +144,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 See [AUTHORS.json](AUTHORS.json) — the single source of truth for
 authorship across this README, CITATION.cff, the JOSS paper, and Zenodo
 metadata.
+
+## AI assistance
+
+**AI assistance:** AI coding tools (Claude, Anthropic) were used for code scaffolding, test fixtures, and documentation drafting. The problem definition, methodology, classification rules, mappings, and analytic decisions are the author's own.
